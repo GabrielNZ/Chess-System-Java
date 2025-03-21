@@ -22,45 +22,50 @@ public class ChessMatch {
         return pieces;
     }
 
+    private void placeNewPiece(int row, char column, ChessPiece piece) {
+        board.placePiece(piece, new ChessPosition((char) row, column).toPosition());
+    }
+
     private void inicialSetup(){
-        board.placePiece(new Rook(board, Color.WHITE), new Position(7,0));
-        board.placePiece(new Rook(board, Color.WHITE), new Position(7,7));
-        board.placePiece(new Rook(board, Color.BLACK), new Position(0,0));
-        board.placePiece(new Rook(board, Color.BLACK), new Position(0,7));
+        placeNewPiece(1,'a',new Rook(board, Color.WHITE));
+        placeNewPiece(1,'h',new Rook(board, Color.WHITE));
+        placeNewPiece(8,'a',new Rook(board, Color.BLACK));
+        placeNewPiece(8,'h',new Rook(board, Color.BLACK));
 
-        board.placePiece(new King(board, Color.WHITE), new Position(7,4));
-        board.placePiece(new King(board, Color.BLACK), new Position(0,4));
+        placeNewPiece(1,'e',new King(board, Color.WHITE));
+        placeNewPiece(8,'e',new King(board, Color.BLACK));
 
-        board.placePiece(new Queen(board, Color.WHITE), new Position(7,3));
-        board.placePiece(new Queen(board, Color.BLACK), new Position(0,3));
+        placeNewPiece(1,'d',new Queen(board, Color.WHITE));
+        placeNewPiece(8,'d',new Queen(board, Color.BLACK));
 
-        board.placePiece(new Knight(board, Color.WHITE), new Position(7,1));
-        board.placePiece(new Knight(board, Color.WHITE), new Position(7,6));
-        board.placePiece(new Knight(board, Color.BLACK), new Position(0,1));
-        board.placePiece(new Knight(board, Color.BLACK), new Position(0,6));
+        placeNewPiece(1,'b',new Knight(board, Color.WHITE));
+        placeNewPiece(1,'g',new Knight(board, Color.WHITE));
+        placeNewPiece(8,'b',new Knight(board, Color.BLACK));
+        placeNewPiece(8,'g',new Knight(board, Color.BLACK));
 
-        board.placePiece(new Pawn(board, Color.WHITE), new Position(6,0));
-        board.placePiece(new Pawn(board, Color.WHITE), new Position(6,1));
-        board.placePiece(new Pawn(board, Color.WHITE), new Position(6,2));
-        board.placePiece(new Pawn(board, Color.WHITE), new Position(6,3));
-        board.placePiece(new Pawn(board, Color.WHITE), new Position(6,4));
-        board.placePiece(new Pawn(board, Color.WHITE), new Position(6,5));
-        board.placePiece(new Pawn(board, Color.WHITE), new Position(6,6));
-        board.placePiece(new Pawn(board, Color.WHITE), new Position(6,7));
+        placeNewPiece(2,'a',new Pawn(board, Color.WHITE));
+        placeNewPiece(2,'b',new Pawn(board, Color.WHITE));
+        placeNewPiece(2,'c',new Pawn(board, Color.WHITE));
+        placeNewPiece(2,'d',new Pawn(board, Color.WHITE));
+        placeNewPiece(2,'e',new Pawn(board, Color.WHITE));
+        placeNewPiece(2,'f',new Pawn(board, Color.WHITE));
+        placeNewPiece(2,'g',new Pawn(board, Color.WHITE));
+        placeNewPiece(2,'h',new Pawn(board, Color.WHITE));
 
-        board.placePiece(new Pawn(board, Color.BLACK), new Position(1,0));
-        board.placePiece(new Pawn(board, Color.BLACK), new Position(1,1));
-        board.placePiece(new Pawn(board, Color.BLACK), new Position(1,2));
-        board.placePiece(new Pawn(board, Color.BLACK), new Position(1,3));
-        board.placePiece(new Pawn(board, Color.BLACK), new Position(1,4));
-        board.placePiece(new Pawn(board, Color.BLACK), new Position(1,5));
-        board.placePiece(new Pawn(board, Color.BLACK), new Position(1,6));
-        board.placePiece(new Pawn(board, Color.BLACK), new Position(1,7));
+        placeNewPiece(7,'a',new Pawn(board, Color.BLACK));
+        placeNewPiece(7,'b',new Pawn(board, Color.BLACK));
+        placeNewPiece(7,'c',new Pawn(board, Color.BLACK));
+        placeNewPiece(7,'d',new Pawn(board, Color.BLACK));
+        placeNewPiece(7,'e',new Pawn(board, Color.BLACK));
+        placeNewPiece(7,'f',new Pawn(board, Color.BLACK));
+        placeNewPiece(7,'g',new Pawn(board, Color.BLACK));
+        placeNewPiece(7,'h',new Pawn(board, Color.BLACK));
 
-        board.placePiece(new Bishop(board, Color.WHITE), new Position(7,2));
-        board.placePiece(new Bishop(board, Color.WHITE), new Position(7,5));
-        board.placePiece(new Bishop(board, Color.BLACK), new Position(0,2));
-        board.placePiece(new Bishop(board, Color.BLACK), new Position(0,5));
+
+        placeNewPiece(1,'c',new Bishop(board, Color.WHITE));
+        placeNewPiece(1,'f',new Bishop(board, Color.WHITE));
+        placeNewPiece(8,'c',new Bishop(board, Color.BLACK));
+        placeNewPiece(8,'f',new Bishop(board, Color.BLACK));
 
 
     }
