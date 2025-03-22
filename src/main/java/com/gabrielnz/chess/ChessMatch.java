@@ -1,7 +1,9 @@
 package com.gabrielnz.chess;
 
 import com.gabrielnz.boardgame.Board;
+import com.gabrielnz.boardgame.Piece;
 import com.gabrielnz.boardgame.Position;
+import com.gabrielnz.chess.exceptions.ChessException;
 import com.gabrielnz.chess.pieces.*;
 
 public class ChessMatch {
@@ -22,8 +24,29 @@ public class ChessMatch {
         return pieces;
     }
 
+    public ChessPiece performChessMove(ChessPosition position, ChessPosition destination) {
+        Position positionStart = position.toPosition();
+        Position positionDestination = destination.toPosition();
+        validateSourcePosition(positionStart);
+        Piece capturedPiece = makeMove(positionStart, positionDestination);
+        return (ChessPiece) capturedPiece;
+    }
+
+    public Piece makeMove(Position position, Position destination) {
+        Piece piece = board.removePiece(position);
+        Piece capturedPiece = board.removePiece(destination);
+        board.placePiece(piece, destination);
+        return capturedPiece;
+    }
+
+    private void validateSourcePosition(Position position) {
+        if(!board.thereIsAPiece(position)) {
+            throw new ChessException("There is no piece at this position");
+        }
+    }
+
     private void placeNewPiece(int row, char column, ChessPiece piece) {
-        board.placePiece(piece, new ChessPosition((char) row, column).toPosition());
+        board.placePiece(piece, new ChessPosition(row, column).toPosition());
     }
 
     private void inicialSetup(){
