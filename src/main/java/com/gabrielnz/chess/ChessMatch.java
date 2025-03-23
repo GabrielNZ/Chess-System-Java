@@ -6,10 +6,16 @@ import com.gabrielnz.boardgame.Position;
 import com.gabrielnz.chess.exceptions.ChessException;
 import com.gabrielnz.chess.pieces.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChessMatch {
     private int turn;
     private Color currentPlayer;
     private Board board;
+
+    private List<Piece> piecesOnTheBoard = new ArrayList<Piece>();
+    private List<Piece> capturedPieces = new ArrayList<Piece>();
 
     public ChessMatch() {
         board = new Board(8, 8);
@@ -48,6 +54,10 @@ public class ChessMatch {
         Piece p = board.removePiece(source);
         Piece capturedPiece = board.removePiece(target);
         board.placePiece(p, target);
+        if(capturedPiece != null) {
+            piecesOnTheBoard.remove(capturedPiece);
+            capturedPieces.add(capturedPiece);
+        }
         return capturedPiece;
     }
 
@@ -55,8 +65,8 @@ public class ChessMatch {
         if (!board.thereIsAPiece(position)) {
             throw new ChessException("There is no piece on source position");
         }
-        if(currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
-           throw new ChessException("You cant move a piece from another player");
+        if (currentPlayer != ((ChessPiece) board.piece(position)).getColor()) {
+            throw new ChessException("You cant move a piece from another player");
         }
         if (!board.piece(position).isThereAnyPossibleMove()) {
             throw new ChessException("There is no possible moves for the chosen piece");
@@ -69,13 +79,14 @@ public class ChessMatch {
         }
     }
 
-    private void nextTurn(){
+    private void nextTurn() {
         turn++;
         currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
     }
 
     private void placeNewPiece(int row, char column, ChessPiece piece) {
         board.placePiece(piece, new ChessPosition(row, column).toPosition());
+        piecesOnTheBoard.add(piece);
     }
 
     private void inicialSetup() {
@@ -96,7 +107,7 @@ public class ChessMatch {
         placeNewPiece(8, 'b', new Knight(board, Color.BLACK));
         placeNewPiece(8, 'g', new Knight(board, Color.BLACK));
 
-        placeNewPiece(2, 'a', new Pawn(board, Color.WHITE));
+      //  placeNewPiece(2, 'a', new Pawn(board, Color.WHITE));
         placeNewPiece(2, 'b', new Pawn(board, Color.WHITE));
         placeNewPiece(2, 'c', new Pawn(board, Color.WHITE));
         placeNewPiece(2, 'd', new Pawn(board, Color.WHITE));
