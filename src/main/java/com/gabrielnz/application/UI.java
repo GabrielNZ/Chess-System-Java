@@ -1,5 +1,6 @@
 package com.gabrielnz.application;
 
+import com.gabrielnz.chess.ChessMatch;
 import com.gabrielnz.chess.ChessPiece;
 import com.gabrielnz.chess.ChessPosition;
 import com.gabrielnz.chess.Color;
@@ -46,6 +47,13 @@ public class UI {
         } catch (RuntimeException e) {
             throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
         }
+    }
+
+    public static void printMatch(ChessMatch match){
+        printBoard(match.getPieces());
+        System.out.println();
+        System.out.println("Turn: " + match.getTurn());
+        System.out.println("Waiting player: "+match.getCurrentPlayer());
     }
 
     public static void printBoard(ChessPiece[][] board) {
