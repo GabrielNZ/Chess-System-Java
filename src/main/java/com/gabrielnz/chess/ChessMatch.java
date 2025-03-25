@@ -66,7 +66,8 @@ public class ChessMatch {
     }
 
     private Piece makeMove(Position source, Position target) {
-        Piece p = board.removePiece(source);
+        ChessPiece p = (ChessPiece) board.removePiece(source);
+        p.increaseMoveCount();
         Piece capturedPiece = board.removePiece(target);
         board.placePiece(p, target);
 
@@ -79,7 +80,8 @@ public class ChessMatch {
     }
 
     private void undoMove(Position source, Position target, Piece capturedPiece) {
-        Piece p = board.removePiece(target);
+        ChessPiece p = (ChessPiece) board.removePiece(target);
+        p.decreaseMoveCount();
         board.placePiece(p, source);
 
         if (capturedPiece != null) {
@@ -177,13 +179,7 @@ public class ChessMatch {
         placeNewPiece(8, 'h', new Rook(board, Color.BLACK));
 
         placeNewPiece(1, 'e', new King(board, Color.WHITE));
-        //placeNewPiece(8, 'e', new King(board, Color.BLACK));
-
-        placeNewPiece(5, 'd', new King(board, Color.BLACK));
-        placeNewPiece(5, 'c', new Rook(board, Color.WHITE));
-        placeNewPiece(5, 'e', new Rook(board, Color.WHITE));
-        placeNewPiece(4, 'c', new Rook(board, Color.WHITE));
-        placeNewPiece(6, 'd', new Rook(board, Color.WHITE));
+        placeNewPiece(8, 'e', new King(board, Color.BLACK));
 
         placeNewPiece(1, 'd', new Queen(board, Color.WHITE));
         placeNewPiece(8, 'd', new Queen(board, Color.BLACK));
