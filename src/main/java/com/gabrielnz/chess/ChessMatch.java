@@ -212,6 +212,8 @@ public class ChessMatch {
         placeNewPiece(1, 'f', new Bishop(board, Color.WHITE));
         placeNewPiece(8, 'c', new Bishop(board, Color.BLACK));
         placeNewPiece(8, 'f', new Bishop(board, Color.BLACK));
+
+        placeNewPiece(4, 'd', new Bishop(board, Color.BLACK));
     }
 
     public int getTurn() {
