@@ -1,4 +1,5 @@
 package com.gabrielnz.application;
+
 import com.gabrielnz.chess.ChessMatch;
 import com.gabrielnz.chess.ChessPiece;
 import com.gabrielnz.chess.ChessPosition;
@@ -14,7 +15,7 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         ChessMatch match = new ChessMatch();
         List<ChessPiece> captured = new ArrayList<ChessPiece>();
-        while(!match.isCheckMate()) {
+        while (!match.isCheckMate()) {
             try {
                 UI.clearScreen();
                 UI.printMatch(match, captured);
@@ -29,18 +30,25 @@ public class Program {
                 System.out.print("Destination: ");
                 ChessPosition destination = UI.readChessPosition(sc);
                 ChessPiece capturedPiece = match.performChessMove(position, destination);
-                if(capturedPiece != null) {
+                if (capturedPiece != null) {
                     captured.add(capturedPiece);
                 }
-                if(match.getPromoted() != null) {
-                    System.out.println("Enter piece for promotion (B/N/R/Q)");
-                    String promotedPiece = sc.nextLine();
+                if (match.getPromoted() != null) {
+                    String promotedPiece = null;
+                    do {
+                        System.out.println("Enter piece for promotion (B/N/R/Q)");
+                        promotedPiece = sc.nextLine().toUpperCase();
+                        if (!promotedPiece.equals("B") && !promotedPiece.equals("N") && !promotedPiece.equals("Q") && !promotedPiece.equals("R")) {
+                            continue;
+                        }
+                        break;
+                    } while (true);
                     match.replacePromotionPiece(promotedPiece);
                 }
-            }catch (ChessException e) {
+            } catch (ChessException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
-            }catch(InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             }
