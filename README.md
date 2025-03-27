@@ -3,9 +3,12 @@
 
 # About the project
 
+
 Chess-System-Java is a POO project from the course [DevSuperior](https://www.udemy.com/course/java-curso-completo/).
 
 The application consists of a chess game with all the rules and common mechanics including special moves like En passant, castling, and promotion.
+
+![chess-system-design](https://github.com/user-attachments/assets/85c63eb4-239a-4d25-9272-ba812fc72491)
 
 # Note
 I have complete knowledge of the POO logic implemented in the project, however the project and class logic are away above my level, i still need to improve this area. (03/26/2025)
